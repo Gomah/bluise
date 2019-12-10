@@ -76,6 +76,10 @@ const nuxtConfig: Configuration = {
    */
   modules: ['@nuxtjs/pwa', '@nuxtjs/style-resources', '@nuxtjs/markdownit'],
 
+  purgeCSS: {
+    whitelist: [/.*-(enter|enter-active|enter-to|leave|leave-active|leave-to)/],
+  },
+
   markdownit: {
     preset: 'default',
 

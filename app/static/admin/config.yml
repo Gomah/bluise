@@ -1,0 +1,69 @@
+# Backend https://www.netlifycms.org/docs/configuration-options/#backend
+backend:
+  name: git-gateway
+  branch: master
+
+# Publish mode https://www.netlifycms.org/docs/configuration-options/#publish-mode
+publish_mode: editorial_workflow
+
+# Media and Public Folders https://www.netlifycms.org/docs/configuration-options/#media-and-public-folders
+media_folder: 'app/static/images/uploads' # Media files will be stored in the repo under images/uploads
+public_folder: '/images/uploads'
+
+# Collections https://www.netlifycms.org/docs/configuration-options/#collections
+collections:
+  - label: Settings
+    name: settings
+    files:
+      - label: General
+        name: general
+        format: json
+        file: 'app/content/settings/general.json'
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: 'Title Template', name: titleTemplate, widget: string }
+          - { label: 'Welcome Text', name: welcomeText, widget: markdown }
+          - { label: Logo, name: logo, widget: image }
+          - { label: Icon, name: icon, widget: image }
+          - { label: 'Loading Color', name: loadingColor, widget: string, default: '#000000' }
+          - { label: 'SEO Description', name: seoDescription, widget: text, required: false }
+          - { label: 'SEO Meta Image', name: seoMetaImage, widget: image, required: false }
+      - label: Manifest
+        name: manifest
+        format: json
+        file: 'app/content/settings/manifest.json'
+        fields:
+          - { label: Name, name: name, widget: string }
+          - { label: 'Short name', name: shortName, widget: string }
+          - { label: Description, name: description, widget: text }
+          - { label: 'Theme color', name: themeColor, widget: string }
+          - { label: 'Background color', name: backgroundColor, widget: string }
+          - { label: Lang, name: lang, widget: string, default: en }
+
+  - name: 'pages'
+    label: 'Pages'
+    folder: 'app/content/pages'
+    create: true
+    slug: '{{slug}}'
+    format: 'json'
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Subtitle, name: subtitle, widget: text, required: false }
+      - { label: Content, name: content, widget: markdown }
+      - { label: 'Featured Image', name: featuredImage, widget: image, required: false }
+      - { label: 'SEO Description', name: seoDescription, widget: text, required: false }
+      - { label: 'SEO Meta Image', name: seoMetaImage, widget: image, required: false }
+  - name: 'blog'
+    label: 'Blog'
+    folder: 'app/content/blog'
+    create: true
+    slug: '{{slug}}'
+    format: 'json'
+    sort: 'published_at:desc'
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: 'Published At', name: publishedAt, widget: date, format: 'Do MMM YYYY' }
+      - { label: Content, name: content, widget: markdown }
+      - { label: 'Featured Image', name: featuredImage, widget: image, required: false }
+      - { label: 'SEO Description', name: seoDescription, widget: text, required: false }
+      - { label: 'SEO Meta Image', name: seoMetaImage, widget: image, required: false }

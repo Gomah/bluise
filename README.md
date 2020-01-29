@@ -6,19 +6,18 @@ I wanted to explore Netlify CMS & Tailwind CSS, ended up creating this boilerpla
 
 So far we've got:
 
-- Blog w/ posts
+- Blog w/ posts, including pagination.
 - Configurable manifest & global settings.
-- CSS Markdown (Thanks to [https://github.com/iandinwoodie/github-markdown-tailwindcss/blob/master/markdown.css](iandinwoodie))
-- Dynamic pages
-- PWA ready
-- SEO ready for posts & pages
-- Signup form (using Netlify Forms)
-- Tools (Commitlint, Husky)
-- Typescript
+- CSS Markdown (Thanks to [https://github.com/iandinwoodie/github-markdown-tailwindcss/blob/master/markdown.css](iandinwoodie)).
+- Dynamic pages.
+- PWA ready.
+- SEO ready for posts & pages.
+- Signup form (using Netlify Forms).
+- Tools (Commitlint, Husky).
+- Typescript.
 
 Few things I'd like to add in the future:
 
-- Blog pagination.
 - Contact form under \_slug.
 - Dynamic sections/widgets.
 - Responsive CSS markdown.

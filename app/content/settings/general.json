@@ -2,7 +2,7 @@
   "title": "Home",
   "titleTemplate": "| Bluise",
   "welcomeText": "# We are ChopStix, taking Chinese to millions of homes.\n\nAuthentic cred hoodie hashtag selfies. Raclette banjo cardigan cred. Kitsch XOXO lomo polaroid. Knausgaard put a bird on it four dollar toast leggings typewriter asymmetrical.",
-  "logo": "/images/uploads/logo.svg",
+  "logo": "/images/uploads/icon-150.png",
   "icon": "/images/uploads/logo.png",
   "loadingColor": "#0b3765",
   "seoDescription": "A quickstart for Nuxt & Netlify CMS",

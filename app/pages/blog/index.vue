@@ -12,6 +12,7 @@
         <div class="post">
           <nuxt-link :to="`/blog/${post.slug}`">
             <img
+              :alt="post.title"
               class="w-full"
               :src="post.featuredImage || 'https://source.unsplash.com/random/640x340'"
             />
@@ -36,6 +37,23 @@ import { Component, Vue } from 'vue-property-decorator';
 import { MetaInfo } from 'vue-meta';
 
 @Component({
+  async asyncData({ params, store }) {
+    const page: number = params.page ? parseInt(params.page, 10) : 1;
+    const { perPage }: { perPage: number } = store.state;
+    const range = page * perPage;
+
+    const posts = store.state.posts.filter((post, index) => {
+      const indexPage = index + 1;
+      return range - perPage < indexPage && indexPage <= range;
+    });
+
+    return {
+      currentPage: page,
+      totalPages: Math.ceil(store.state.posts / perPage),
+      posts: posts || [],
+    };
+  },
+
   head(): MetaInfo {
     return {
       title: 'Blog',
@@ -50,8 +68,13 @@ import { MetaInfo } from 'vue-meta';
   },
 })
 export default class BlogIndex extends Vue {
-  get posts(): Post[] {
-    return [...this.$store.state.posts];
+  currentPage!: number;
+
+  posts: Post[] = [];
+
+  handlePagination(value): void {
+    const path = value === 1 ? '/blog' : `/blog/page/${value}`;
+    this.$router.push(path);
   }
 }
 </script>

@@ -4,6 +4,7 @@ import Vue from 'vue';
 import { getContent } from '@/utils';
 
 export interface State {
+  perPage: number;
   pages: Page[];
   posts: Post[];
   route?: Route;
@@ -11,6 +12,7 @@ export interface State {
 
 // Initial State
 export const appState = {
+  perPage: 4,
   pages: [],
   posts: [],
 };

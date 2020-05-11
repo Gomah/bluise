@@ -2,6 +2,8 @@ module.exports = {
   root: true,
   parserOptions: {
     parser: '@typescript-eslint/parser',
+    project: './tsconfig.json',
+    extraFileExtensions: ['.vue'],
   },
   env: {
     browser: true,
@@ -10,13 +12,14 @@ module.exports = {
   },
   extends: [
     'airbnb-typescript/base',
+    'plugin:vue-a11y/recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:vue/strongly-recommended',
     'prettier',
     'prettier/vue',
     'prettier/@typescript-eslint',
   ],
-  plugins: ['@typescript-eslint', 'prettier', 'vue'],
+  plugins: ['@typescript-eslint', 'vue-a11y', 'prettier', 'vue'],
   // add your custom rules here
   rules: {
     'prettier/prettier': ['error', { singleQuote: true, trailingComma: 'es5', printWidth: 100 }],

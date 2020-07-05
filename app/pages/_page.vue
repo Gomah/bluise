@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue } from 'nuxt-property-decorator';
 import { MetaInfo } from 'vue-meta';
 
 @Component({
@@ -20,22 +20,6 @@ import { MetaInfo } from 'vue-meta';
     }
 
     return 'slide-right';
-  },
-
-  async asyncData({ params, payload }): Promise<{ page: Page }> {
-    if (payload) {
-      return { page: payload };
-    }
-
-    try {
-      const page = require(`@/content/pages/${params.page}.json`);
-
-      return {
-        page,
-      };
-    } catch (e) {
-      throw new Error('Not found');
-    }
   },
 
   head(): MetaInfo {
@@ -58,5 +42,21 @@ import { MetaInfo } from 'vue-meta';
 })
 export default class PageTemplate extends Vue {
   page!: Page;
+
+  async asyncData({ params, payload }): Promise<{ page: Page }> {
+    if (payload) {
+      return { page: payload };
+    }
+
+    try {
+      const page = require(`@/content/pages/${params.page}.json`);
+
+      return {
+        page,
+      };
+    } catch (e) {
+      throw new Error('Not found');
+    }
+  }
 }
 </script>

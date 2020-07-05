@@ -29,29 +29,19 @@
         </div>
       </div>
     </div>
+    <Pagination v-if="totalPages > 1" :current-page="currentPage" :total-pages="totalPages" />
   </section>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue } from 'nuxt-property-decorator';
 import { MetaInfo } from 'vue-meta';
 
+const Pagination = () => import('@/components/commons/pagination.vue');
+
 @Component({
-  async asyncData({ params, store }) {
-    const page: number = params.page ? parseInt(params.page, 10) : 1;
-    const { perPage }: { perPage: number } = store.state;
-    const range = page * perPage;
-
-    const posts = store.state.posts.filter((post, index) => {
-      const indexPage = index + 1;
-      return range - perPage < indexPage && indexPage <= range;
-    });
-
-    return {
-      currentPage: page,
-      totalPages: Math.ceil(store.state.posts / perPage),
-      posts: posts || [],
-    };
+  components: {
+    Pagination,
   },
 
   head(): MetaInfo {
@@ -70,11 +60,25 @@ import { MetaInfo } from 'vue-meta';
 export default class BlogIndex extends Vue {
   currentPage!: number;
 
+  totalPages!: number;
+
   posts: Post[] = [];
 
-  handlePagination(value): void {
-    const path = value === 1 ? '/blog' : `/blog/page/${value}`;
-    this.$router.push(path);
+  async asyncData({ params, store }) {
+    const page: number = params.page ? parseInt(params.page, 10) : 1;
+    const { perPage }: { perPage: number } = store.state;
+    const range = page * perPage;
+
+    const posts = store.state.posts.filter((post, index) => {
+      const indexPage = index + 1;
+      return range - perPage < indexPage && indexPage <= range;
+    });
+
+    return {
+      currentPage: page,
+      totalPages: Math.ceil(store.state.posts.length / perPage),
+      posts: posts || [],
+    };
   }
 }
 </script>

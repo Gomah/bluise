@@ -18,10 +18,10 @@ export const appState = {
 };
 
 export const mutations: MutationTree<State> = {
-  SET_PAGES: (state, payload: object): void => {
+  SET_PAGES: (state, payload: Record<string, unknown>): void => {
     Vue.set(state, 'pages', payload);
   },
-  SET_POSTS: (state, payload: object): void => {
+  SET_POSTS: (state, payload: Record<string, unknown>): void => {
     Vue.set(state, 'posts', payload);
   },
 };

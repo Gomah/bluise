@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue } from 'nuxt-property-decorator';
 import SiteHeader from '@/components/partials/header.vue';
 import SiteFooter from '@/components/partials/footer.vue';
 
